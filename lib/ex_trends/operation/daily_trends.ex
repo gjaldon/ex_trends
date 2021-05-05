@@ -13,7 +13,7 @@ defmodule ExTrends.Operation.DailyTrends do
       <<_::binary-size(5), data::binary>> = body
 
       result =
-        :jiffy.decode(data, [:return_maps])
+        Jason.decode!(data, [:return_maps])
         |> get_in(["default", "trendingSearchesDays"])
         |> hd()
         |> Map.get("trendingSearches")

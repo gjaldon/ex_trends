@@ -13,7 +13,7 @@ defmodule ExTrends.Operation.Explore do
       <<_::binary-size(4), data::binary>> = body
 
       result =
-        :jiffy.decode(data, [:return_maps])
+        Jason.decode!(data, [:return_maps])
         |> Map.get("widgets")
 
       {:ok, result}

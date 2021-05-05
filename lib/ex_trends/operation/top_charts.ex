@@ -13,7 +13,7 @@ defmodule ExTrends.Operation.TopCharts do
       <<_::binary-size(5), data::binary>> = body
 
       result =
-        case :jiffy.decode(data, [:return_maps]) |> Map.get("topCharts") do
+        case Jason.decode!(data, [:return_maps]) |> Map.get("topCharts") do
           [h | _] -> Map.get(h, "listItems")
           [] -> []
         end

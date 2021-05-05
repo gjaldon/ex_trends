@@ -81,7 +81,7 @@ defmodule ExTrends.InterestByRegion do
     with explore <- ExTrends.Explore.request(explore_query) |> ExTrends.run!(),
          %{"request" => request, "token" => token} <-
            Enum.find(explore, &(Map.get(&1, "id") == @id)) do
-      req = :jiffy.encode(Map.put(request, "resolution", resolution))
+      req = Jason.encode!(Map.put(request, "resolution", resolution))
 
       %ExTrends.Operation.InterestByRegion{params: [hl: hl, tz: tz, req: req, token: token]}
     else

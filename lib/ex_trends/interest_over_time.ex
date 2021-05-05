@@ -76,7 +76,7 @@ defmodule ExTrends.InterestOverTime do
     with explore <- ExTrends.Explore.request(explore_query) |> ExTrends.run!(),
          %{"request" => request, "token" => token} <-
            Enum.find(explore, &(Map.get(&1, "id") == @id)) do
-      req = :jiffy.encode(request)
+      req = Jason.encode!(request)
 
       %ExTrends.Operation.InterestOverTime{params: [hl: hl, tz: tz, req: req, token: token]}
     else

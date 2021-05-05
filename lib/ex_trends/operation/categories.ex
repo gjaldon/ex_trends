@@ -11,7 +11,7 @@ defmodule ExTrends.Operation.Categories do
   def parser({:ok, %{status_code: 200, body: body}}) do
     try do
       <<_::binary-size(5), data::binary>> = body
-      {:ok, :jiffy.decode(data, [:return_maps])}
+      {:ok, Jason.decode!(data, [:return_maps])}
     catch
       type, error -> {:error, {type, error}}
     end

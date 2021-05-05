@@ -79,7 +79,7 @@ defmodule ExTrends.RelatedQueries do
           case Map.get(explore, "id") do
             <<@id::binary, _::binary>> ->
               %{"request" => request, "token" => token} = explore
-              req = :jiffy.encode(request)
+              req = Jason.encode!(request)
 
               [
                 %ExTrends.Operation.RelatedQueries{

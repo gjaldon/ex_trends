@@ -70,7 +70,7 @@ defmodule ExTrends.Suggestions do
     case ExTrends.Explore.request(explore_query) |> ExTrends.run() do
       {:ok, [%{"request" => request, "token" => token} | _]} ->
         %{path: path} = suggestions = %ExTrends.Operation.Suggestions{}
-        req = :jiffy.encode(request)
+        req = Jason.encode!(request)
 
         %ExTrends.Operation.Suggestions{
           suggestions

@@ -41,7 +41,7 @@ defmodule ExTrends.MixProject do
   defp deps do
     [
       {:hackney, "~> 1.15"},
-      {:jiffy, "~> 1.0"},
+      {:jason, "~> 1.2"},
       {:ex_doc, "~> 0.16", only: [:dev, :test]},
       {:dialyxir, "~> 1.0.0-rc.7", only: [:dev], runtime: false}
     ]
